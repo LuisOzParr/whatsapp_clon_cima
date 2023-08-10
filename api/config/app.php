@@ -82,7 +82,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -211,5 +211,21 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | First user
+    |--------------------------------------------------------------------------
+    |
+    | This user will be created when run seeders.
+    | php artisan db:seed
+    |
+    */
+    'user' => [
+        'name' => env('APP_USER_NAME', 'Root'),
+        'password' => env('APP_USER_PASSWORD', 'password'),
+        'phone_number' => env('APP_USER_PHONE_NUMBER', '0000000000'),
+    ]
 
 ];

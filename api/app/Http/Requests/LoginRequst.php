@@ -28,4 +28,12 @@ class LoginRequst extends FormRequest
             'password' => 'required'
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'phone_number' => __('phone_number'),
+            'password' => __('password')
+        ];
+    }
 }

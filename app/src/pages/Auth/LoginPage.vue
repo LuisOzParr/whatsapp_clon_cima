@@ -72,7 +72,6 @@ export default {
           store.saveAuth(res.data);
           router.push({ path: '/' })
         }).catch(error => {
-          console.log(error.response);
           $q.notify({
             color: 'red-5',
             textColor: 'white',

@@ -13,7 +13,7 @@ class StoreContactRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,23 @@ class StoreContactRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required',
+            'phone_number' => 'required|numeric|digits:10|exists:users,phone_number',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => __('nombre'),
+            'phone_number' => __('número de teléfono'),
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'phone_number.exists' => 'El :attribute no esta registrado en '.config('app.name'),
         ];
     }
 }

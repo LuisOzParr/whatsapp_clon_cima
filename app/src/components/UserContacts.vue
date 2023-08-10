@@ -7,10 +7,10 @@
     </q-item-section>
 
     <q-item-section>
-      <q-item-label lines="1">{{ name }} </q-item-label>
-<!--      <q-item-label caption lines="1">-->
-<!--        &#45;&#45; I'll be in your neighborhood doing errands this-->
-<!--      </q-item-label>-->
+      <q-item-label class="tw-text-gray-title" lines="1">{{ title }} </q-item-label>
+      <q-item-label class="tw-text-gray-message" lines="1" v-if="subtitle != null" caption>
+        {{ subtitle }}
+      </q-item-label>
     </q-item-section>
 
 <!--    <q-item-section side top>-->
@@ -21,8 +21,6 @@
 
 <script>
 export default {
-  props: {
-    name: String,
-  }
+  props: ['chat', 'title', 'subtitle']
 }
 </script>

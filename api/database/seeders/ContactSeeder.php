@@ -14,8 +14,8 @@ class ContactSeeder extends Seeder
      */
     public function run()
     {
-        Contact::factory(20)->create([
-            'owner_id' => 1
+        Contact::factory()->create([
+            'owner_id' => 1,
         ]);
     }
 }

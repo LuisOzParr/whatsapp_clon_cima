@@ -3,7 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use DB;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
@@ -15,9 +16,23 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        User::factory(1)->create([
-            "name" => 'Steve',
-            "phone_number" => '0000000000'
+        DB::table('users')->insert([
+            [
+                "name" => config('app.user.name'),
+                "phone_number" => config('app.user.phone_number'),
+                "password" => bcrypt(config('app.user.password')),
+            ]
         ]);
+
+        User::factory(5)
+            ->state(new Sequence(
+                ['phone_number' => '1000000000'],
+                ['phone_number' => '2000000000'],
+                ['phone_number' => '3000000000'],
+                ['phone_number' => '4000000000'],
+                ['phone_number' => '5000000000'],
+                ['phone_number' => '6000000000'],
+            ))
+            ->create();
     }
 }

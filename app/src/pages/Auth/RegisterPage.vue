@@ -70,14 +70,12 @@ export default {
       isPwd,
 
       onSubmit () {
-        api.post('/api/register', {
+        api.post('/register', {
           'name': name.value,
           'phone_number': phone_number.value,
           'password': password.value
         }).then(res => {
-          console.log('RESPONSE', res);
         }).catch(error => {
-          console.log(error.response);
           $q.notify({
             color: 'red-5',
             textColor: 'white',

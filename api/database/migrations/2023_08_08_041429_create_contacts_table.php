@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('owner_id')->constrained('users');
             $table->foreignId('contact_id')->constrained('users');
-            $table->string('fist_name');
-            $table->string('last_name')->nullable();
+            $table->foreignId('chat_id')->nullable()->constrained();
+            $table->string('name');
 
             $table->timestamps();
             $table->softDeletes();

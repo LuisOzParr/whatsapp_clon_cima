@@ -7,6 +7,7 @@ use App\Http\Requests\StoreMessageRequest;
 use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Chat;
 use App\Models\Message;
+use Auth;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Response;
@@ -30,12 +31,12 @@ class MessageController extends Controller
     public function store(StoreMessageRequest $request, Chat $chat): JsonResponse
     {
         $this->authorize('view', $chat);
-        $current = Auth::user();
 
-        $message = Message::create([
-           'message' => $request->message,
-           'user_id' => $current->id,
-        ]);
+        $message = Message::store(
+            chatId: $chat->id,
+            userId: Auth::user()->id,
+            message: $request->message
+        );
 
         return Response::success($message);
     }

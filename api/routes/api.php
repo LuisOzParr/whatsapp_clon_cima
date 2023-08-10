@@ -19,16 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-
-
-});
-
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
-    Route::resource('/chats', ChatController::class)->only('index');
+    Route::resource('/chats', ChatController::class)->only(['index', 'store']);
     Route::resource('/chats/{chat}/messages', MessageController::class)->only(['index', 'store']);
-    Route::resource('/contacts', ContactController::class)->only('index');
+    Route::resource('/contacts', ContactController::class)->only(['index', 'store']);
     Route::resource('/messages/resend', ResendController::class)->only('store');
 });
 

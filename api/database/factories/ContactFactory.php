@@ -20,8 +20,7 @@ class ContactFactory extends Factory
         return [
             "owner_id" => User::factory()->create()->id,
             "contact_id" => User::factory()->create()->id,
-            "fist_name" => $this->faker->name(),
-            "last_name" => $this->faker->lastName(),
+            "name" => $this->faker->name(),
         ];
     }
 }

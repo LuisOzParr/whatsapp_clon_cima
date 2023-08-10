@@ -1,7 +1,9 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
 import { useAuthStore } from 'stores/useAuthStore'
-import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
+import { VueQueryPlugin } from "@tanstack/vue-query";
+
 
 // Be careful when using SSR for cross-request state pollution
 // due to creating a Singleton instance here;
@@ -12,26 +14,18 @@ import { useQuasar } from 'quasar'
 const api = axios
   .create({ baseURL: 'http://127.0.0.1:8000/api' })
 
-
 api.interceptors
   .response
   .use((res) => {
     return res;
   }, (error) => {
     const store = useAuthStore();
-    const $q = useQuasar()
+    const router = useRouter()
+
 
     switch (error.response.status) {
       case 401:
         store.destroy()
-        break
-      case 403:
-        $q.notify({
-          color: 'red-5',
-          textColor: 'white',
-          icon: 'warning',
-          message: error.response.data.message
-        })
         break
     }
     return Promise.reject(error);
@@ -39,6 +33,8 @@ api.interceptors
 
 
 export default boot(({ app }) => {
+  app.use(VueQueryPlugin)
+
   // for use inside Vue files (Options API) through this.$axios and this.$api
 
   app.config.globalProperties.$axios = axios

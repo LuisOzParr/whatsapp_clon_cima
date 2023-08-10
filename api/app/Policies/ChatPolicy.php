@@ -27,9 +27,10 @@ class ChatPolicy
     public function view(User $user, Chat $chat): bool
     {
         if ($chat->users->where('id', $user->id)->isEmpty()) {
+            logger('es empty');
             return false;
         }
-
+        logger('no es empty');
         return true;
     }
 
