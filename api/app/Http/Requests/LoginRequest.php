@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMessageRequest extends FormRequest
+class LoginRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateMessageRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class UpdateMessageRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'phone_number' => 'required|numeric',
+            'password' => 'required'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'phone_number' => __('phone_number'),
+            'password' => __('password')
         ];
     }
 }

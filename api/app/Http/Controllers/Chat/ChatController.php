@@ -49,8 +49,6 @@ class ChatController extends Controller
 
         $chat = Chat::where('id', $chat->id)->with(['contacts',  'lastMessage'])->first();
 
-        logger($chat);
-
         return response()->success($chat);
     }
 }

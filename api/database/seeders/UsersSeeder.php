@@ -24,7 +24,7 @@ class UsersSeeder extends Seeder
             ]
         ]);
 
-        User::factory(5)
+        User::factory(10)
             ->state(new Sequence(
                 ['phone_number' => '1000000000'],
                 ['phone_number' => '2000000000'],
@@ -32,6 +32,10 @@ class UsersSeeder extends Seeder
                 ['phone_number' => '4000000000'],
                 ['phone_number' => '5000000000'],
                 ['phone_number' => '6000000000'],
+                ['phone_number' => '7000000000'],
+                ['phone_number' => '8000000000'],
+                ['phone_number' => '9000000000'],
+                ['phone_number' => '1000000000'],
             ))
             ->create();
     }

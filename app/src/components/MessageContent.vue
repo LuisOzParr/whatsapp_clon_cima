@@ -6,13 +6,17 @@
         :message="message.message"
         :is-user="currentUserId === message.user_id"
         :time="message.created_at_formatted"
+        :icon="icons[message.message_status_id]"
+        :on-click-resend="onClickResend"
+        :id="message.id"
     />
   </q-page>
 </template>
 
 <script setup>
-import { ref, watch, defineProps } from 'vue'
+import { defineProps } from 'vue'
 import MessagesCard from 'components/MessagesCard.vue'
-const props = defineProps(['messages', 'currentUserId'])
-
+import {messageStatus} from "src/utils/constants/messageStatus";
+const props = defineProps(['messages', 'currentUserId', 'onClickResend'])
+const icons = messageStatus;
 </script>

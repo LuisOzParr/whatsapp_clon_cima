@@ -16,7 +16,10 @@
     "@quasar/extras": "^1.16.4",
     "@tanstack/vue-query": "^4.32.6",
     "axios": "^1.2.1",
+    "dotenv": "^16.3.1",
+    "laravel-echo": "^1.15.2",
     "pinia": "^2.0.11",
+    "pusher-js": "^8.3.0",
     "quasar": "^2.6.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0"

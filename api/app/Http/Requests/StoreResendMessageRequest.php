@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateChatRequest extends FormRequest
+class StoreResendMessageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class UpdateChatRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdateChatRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'message_id' => 'required|exists:messages,id',
+            'contact_id' => 'required|exists:contacts,id',
         ];
     }
 }

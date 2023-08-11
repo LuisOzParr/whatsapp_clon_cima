@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Message;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMessageRequest;
-use App\Http\Requests\UpdateMessageRequest;
 use App\Models\Chat;
 use App\Models\Message;
 use Auth;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use Response;
 
-class MessageController extends Controller
+class ChatMessagesController extends Controller
 {
     /**
      * Display a listing of the resource.

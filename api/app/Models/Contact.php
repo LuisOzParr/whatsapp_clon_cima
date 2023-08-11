@@ -57,7 +57,7 @@ class Contact extends Model
     public function scopeByOwner(Builder $query, int $ownerId): void
     {
         $query->where('owner_id', $ownerId)
-            ->orderBy('first_name')
+            ->orderBy('name')
             ->with('lastMessage');
     }
 

@@ -12,7 +12,7 @@ import { VueQueryPlugin } from "@tanstack/vue-query";
 // "export default () => {}" function below (which runs individually
 // for each client)
 const api = axios
-  .create({ baseURL: 'http://127.0.0.1:8000/api' })
+  .create({ baseURL: `${process.env.env.API_URL}/api` })
 
 api.interceptors
   .response

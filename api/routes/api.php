@@ -3,9 +3,8 @@
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Chat\ChatController;
 use App\Http\Controllers\Contact\ContactController;
-use App\Http\Controllers\Message\MessageController;
+use App\Http\Controllers\Message\ChatMessagesController;
 use App\Http\Controllers\Message\ResendController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->middleware('auth:sanctum')->group(function () {
     Route::resource('/chats', ChatController::class)->only(['index', 'store']);
-    Route::resource('/chats/{chat}/messages', MessageController::class)->only(['index', 'store']);
+    Route::resource('/chats/{chat}/messages', ChatMessagesController::class)->only(['index', 'store']);
     Route::resource('/contacts', ContactController::class)->only(['index', 'store']);
     Route::resource('/messages/resend', ResendController::class)->only('store');
+
 });
 
 Route::post('/register', [AuthController::class, 'register']);

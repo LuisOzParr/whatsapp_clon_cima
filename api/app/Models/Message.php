@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\SendMessageEvent;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -26,6 +27,7 @@ class Message extends Model
     protected $casts = [
         'user_id' => 'int',
         'chat_id' => 'int',
+        'message_status_id' => 'int',
         'created_at' => 'datetime',
     ];
 
@@ -65,11 +67,15 @@ class Message extends Model
         string $message,
         int    $statusId = MessageStatus::RECEIVED_SERVER): Message
     {
-        return Message::create([
+        $message = Message::create([
             'chat_id' => $chatId,
             'message' => $message,
             'user_id' => $userId,
             'message_status_id' => $statusId,
         ]);
+
+        SendMessageEvent::dispatch($chatId, $message);
+
+        return $message;
     }
 }
